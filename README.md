@@ -1,39 +1,28 @@
 # GalgoBet Backend
-
 API de simulación de carreras de galgos con sistema de apuestas.
 
 ## Tecnologías
-
 - **Node.js** + **Express** - Servidor HTTP y API REST
 - **MongoDB** + **Mongoose** - Base de datos y ODM
 - **JWT** - Autenticación por token
 - **bcrypt** - Hash de contraseñas
 
 ## Requisitos
-
 - Node.js 18+
 - MongoDB 7+ (local o Docker)
 
 ## Instalación
-
 ```bash
 # Instalar dependencias
 npm install
-
 # Editar .env con tus valores
-
 # Poblar base de datos con datos iniciales
 npm run seed
-
 # Iniciar servidor
 npm start
-
-
 ```
 
-
 ## Variables de Entorno
-
 | Variable | Descripción | Default |
 |---|---|---|
 | `PORT` | Puerto del servidor | `3000` |
@@ -42,20 +31,26 @@ npm start
 | `JWT_EXPIRES_IN` | Tiempo de expiración del token | `24h` |
 | `CREDITOS_INICIALES` | Créditos al registrarse | `500` |
 
-
 ## Problemas conocidos al arrancar
 
-Docker en máquinas virtuales o CPUs sin AVX
+### Docker en máquinas virtuales o CPUs sin AVX
 Si al usar Docker aparece este warning y la API no conecta a MongoDB:
+```
 WARNING: MongoDB 5.0+ requires a CPU with AVX support
 Error al conectar a MongoDB: getaddrinfo EAI_AGAIN mongo
-Causa: MongoDB 7 requiere soporte AVX en la CPU, que no está disponible en máquinas virtuales (VirtualBox, VMware) con CPUs antiguas.
-Solución: Cambiar la versión de MongoDB en docker-compose.yml de mongo:7 a mongo:4.4:
-yaml  mongo:
+```
+**Causa:** MongoDB 7 requiere soporte AVX en la CPU, que no está disponible en máquinas virtuales (VirtualBox, VMware) con CPUs antiguas.
+
+**Solución:** Cambiar la versión de MongoDB en `docker-compose.yml` de `mongo:7` a `mongo:4.4`:
+```yaml
+  mongo:
     image: mongo:4.4
+```
 Luego reiniciar los contenedores:
-bashdocker-compose down
+```bash
+docker-compose down
 docker-compose up --build
+```
 
 ## Endpoints API
 
@@ -104,7 +99,6 @@ docker-compose up --build
 - `GET /api/transacciones/mis-movimientos` - Mis movimientos (auth)
 
 ## Usuarios de prueba (después de seed)
-
 | Email | Password | Rol |
 |---|---|---|
 | admin@galgobet.com | admin123 | admin |
@@ -114,5 +108,3 @@ docker-compose up --build
 | ana@test.com | 123456 | usuario |
 
 Todos los usuarios empiezan con 500 créditos.
-
-```
