@@ -42,6 +42,21 @@ npm start
 | `JWT_EXPIRES_IN` | Tiempo de expiración del token | `24h` |
 | `CREDITOS_INICIALES` | Créditos al registrarse | `500` |
 
+
+## Problemas conocidos al arrancar
+
+Docker en máquinas virtuales o CPUs sin AVX
+Si al usar Docker aparece este warning y la API no conecta a MongoDB:
+WARNING: MongoDB 5.0+ requires a CPU with AVX support
+Error al conectar a MongoDB: getaddrinfo EAI_AGAIN mongo
+Causa: MongoDB 7 requiere soporte AVX en la CPU, que no está disponible en máquinas virtuales (VirtualBox, VMware) con CPUs antiguas.
+Solución: Cambiar la versión de MongoDB en docker-compose.yml de mongo:7 a mongo:4.4:
+yaml  mongo:
+    image: mongo:4.4
+Luego reiniciar los contenedores:
+bashdocker-compose down
+docker-compose up --build
+
 ## Endpoints API
 
 ### Autenticación
