@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GalgoBet - Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="dashboard-header">
+    <div class="logo">🐕 <span>GalgoBet</span></div>
+    <div class="user-info">
+      <span class="badge-creditos" id="header-creditos">0.00€</span>
+      <span class="user-name" id="header-nombre">Usuario</span>
+      <button class="btn-logout" id="btn-logout">Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <nav class="nav-tabs">
+    <button class="nav-tab active" id="btn-tab-apuestas">🎰 Apuestas</button>
+    <button class="nav-tab" id="btn-tab-rankings">🏆 Clasificación</button>
+    <button class="nav-tab" id="btn-tab-carreras">🏁 Ver Carreras</button>
+  </nav>
+
+  <main class="main-content" id="contenido-principal">
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <div class="loading-text">Cargando...</div>
+    </div>
+  </main>
+
+  <footer class="dashboard-footer">
+    GalgoBet &copy; 2026 - Proyecto CETI
+  </footer>
+
+  <div id="notificaciones" class="notification-container"></div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/apuestas.js"></script>
+  <script src="/js/rankings.js"></script>
+  <script src="/js/carreras.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
